@@ -109,6 +109,10 @@ function labelFormatter() {
   return stringArr.join('; ').trim()
 }
 
+onMounted(() => {
+  ruleFormRef.value?.validate()
+})
+
 watch(
   formData,
   async () => {
