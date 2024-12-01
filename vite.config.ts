@@ -14,9 +14,15 @@ export default defineConfig({
     vueDevTools(),
     AutoImport({
       resolvers: [ElementPlusResolver()],
+      imports: [
+        'vue',
+        'pinia',
+      ],
       dts: 'src/auto-imports.d.ts',
     }),
     Components({
+      extensions: ['vue', 'md'],
+      include: [/\.vue$/, /\.vue\?vue/, /\.md$/],
       resolvers: [ElementPlusResolver()],
       dts: 'src/components.d.ts',
     }),
@@ -25,5 +31,8 @@ export default defineConfig({
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
     },
+  },
+  server: {
+    port: 8080,
   },
 })

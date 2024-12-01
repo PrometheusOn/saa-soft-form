@@ -1,7 +1,5 @@
 <script setup lang="ts">
-import type UsersList from './components/UsersList.vue';
-
-
+import type UsersList from './components/UsersList.vue'
 </script>
 
 <template>
