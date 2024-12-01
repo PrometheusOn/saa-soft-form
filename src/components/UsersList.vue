@@ -7,7 +7,7 @@
       </ElIcon>
       <p>Для указания нескольких меток одной пары логин/пароль используйте разделитель ;</p>
     </div>
-    <div v-if="users.length" class="flex flex-col gap-2">
+    <div v-if="users.length" class="flex flex-col gap-5">
       <template v-for="(user, index) in users" :key="user.id">
         <UserForm :user :index />
       </template>

@@ -25,10 +25,10 @@
         />
       </ElSelect>
     </ElFormItem>
-    <ElFormItem :label="!index ? 'Логин' : ''">
+    <ElFormItem :label="!index ? 'Логин' : ''" prop="login">
       <ElInput v-model="formData.login" placeholder="Значение" maxlength="100" />
     </ElFormItem>
-    <ElFormItem v-if="formData.type !== 'ldap'" :label="!index ? 'Пароль' : ''">
+    <ElFormItem v-if="formData.type !== 'ldap'" :label="!index ? 'Пароль' : ''" prop="password">
       <ElInput
         v-model="formData.password"
         type="password"
@@ -69,7 +69,7 @@ const formData = ref<User>({
 const labelInput = ref('')
 
 const rules = ref<FormRules<User>>({
-  login: [{ required: true, message: 'Заполните логин пользователя', trigger: 'blur' }],
+  login: [{ required: true, message: 'Заполните логин пользователя', trigger: 'change' }],
   password: [{ required: true, validator: validatePass }],
 })
 
@@ -108,6 +108,26 @@ function labelFormatter() {
   const stringArr = formData.value.label.map((label) => label.text)
   return stringArr.join('; ').trim()
 }
+
+watch(
+  formData,
+  async () => {
+    let isValid = true
+
+    if (ruleFormRef.value) {
+      await ruleFormRef.value?.validate((valid) => {
+        if (!valid) isValid = false
+      })
+    }
+
+    if (isValid) {
+      usersStore.uploadUser(formData.value)
+    } else {
+      usersStore.deleteUserFromLS(formData.value.id)
+    }
+  },
+  { deep: true },
+)
 </script>
 
 <style scoped>
