@@ -1,6 +1,13 @@
 export interface User {
+  id: number
   login: string
   password: string | null
-  label: string
-  type: 'local' | 'ldap'
+  label: Label[]
+  type: Types
 }
+
+export interface Label {
+  text: string
+}
+
+export type Types = 'local' | 'ldap'

@@ -9,5 +9,4 @@
 import { useUsersStore } from '@/stores/users'
 
 const userStore = useUsersStore()
-
 </script>
