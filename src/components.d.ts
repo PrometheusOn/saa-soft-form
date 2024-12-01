@@ -7,7 +7,11 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
+    CreateUserBlock: typeof import('./components/CreateUserBlock.vue')['default']
     ElButton: typeof import('element-plus/es')['ElButton']
+    ElIcon: typeof import('element-plus/es')['ElIcon']
+    QuestionIcon: typeof import('./components/icons/QuestionIcon.vue')['default']
+    TrashIcon: typeof import('./components/icons/TrashIcon.vue')['default']
     UserForm: typeof import('./components/UserForm.vue')['default']
     UsersList: typeof import('./components/UsersList.vue')['default']
   }
